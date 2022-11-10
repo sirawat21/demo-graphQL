@@ -27,6 +27,19 @@ api.use(express.json());
 
 /* Route */
 // root
+/*
+Example of GraphQL HTTP
+RE: https://graphql.org/graphql-js/express-graphql/
+graphqlHTTP({
+  schema: GraphQLSchema,
+  graphiql?: ?boolean,
+  rootValue?: ?any,
+  context?: ?any,
+  pretty?: ?boolean,
+  formatError?: ?Function,
+  validationRules?: ?Array<any>,
+}): Middleware
+*/
 api.get('/api/root', 
    graphqlHTTP({
       schema: schema,      // select schema
@@ -38,7 +51,7 @@ api.get('/api/root',
 api.get('/api/message1', 
    graphqlHTTP({
       schema: schema,
-      rootValue: message1,
+      rootValue: any,
       graphiql: true,
    })
 );
