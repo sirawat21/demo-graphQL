@@ -4,7 +4,7 @@
 npm install -D @babel/node @babel/core @babel/cli 
 @babel/plugin-proposal-class-properties \ 
 @babel/preset-env nodemon npm-run-all; \
-npm install express body-parser moment
+npm install express express-graphql graphql body-parser moment;
 ```
 ### Referance
 - Babel [source](https://babeljs.io/docs/en/)
