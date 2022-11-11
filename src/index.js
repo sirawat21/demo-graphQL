@@ -5,16 +5,14 @@ import { buildSchema } from "graphql";
 /* GraphQL schema */
 const schema = buildSchema(`
 type Query {
-   root: String,
-   message1: String,
-   message2: String
+   hello: String,
 }
 `);
 
-/* Apply GraphQL schema */
-const root = () => ('root vallue');
-const message1 = () => ('message 1');
-const message2 = () => ('message 2');
+/* Resolver function */
+const root = {
+   hello: () => ('Hello World.'),
+}
 
 /* API configuration */
 const _CONF = {
@@ -40,18 +38,10 @@ graphqlHTTP({
   validationRules?: ?Array<any>,
 }): Middleware
 */
-api.get('/api/root', 
+api.get('/graphql/root', 
    graphqlHTTP({
       schema: schema,      // select schema
-      rootValue: root,     // select root value
-      graphiql: true,
-   })
-);
-// message 1
-api.get('/api/message1', 
-   graphqlHTTP({
-      schema: schema,
-      rootValue: any,
+      rootValue: root,     // select resolve func
       graphiql: true,
    })
 );
