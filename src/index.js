@@ -4,14 +4,16 @@ import { buildSchema } from "graphql";
 
 /* GraphQL schema */
 const schema = buildSchema(`
-type Query {
-   hello: String,
-}
+   type Query {
+      hello: String
+   }
 `);
 
 /* Resolver function */
 const root = {
-   hello: () => ('Hello World.'),
+   hello: () => {
+      return "Hello World";
+   },
 }
 
 /* API configuration */
@@ -21,7 +23,7 @@ const _CONF = {
 
 /* API setup */
 const api = express();
-api.use(express.json());
+//api.use(express.json());
 
 /* Route */
 // root
@@ -38,11 +40,11 @@ graphqlHTTP({
   validationRules?: ?Array<any>,
 }): Middleware
 */
-api.get('/graphql/root', 
+api.get('/graphql',
    graphqlHTTP({
       schema: schema,      // select schema
       rootValue: root,     // select resolve func
-      graphiql: true,
+      graphiql: true,      // UI enable
    })
 );
 
